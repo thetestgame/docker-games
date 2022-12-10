@@ -6,11 +6,11 @@ Dedicated Left 4 Dead server using Docker.
 
 ## Version Tags
 
-| Tag          | Description                                                 |
-|--------------|-------------------------------------------------------------|
-| stable       | Ubuntu 20.04: wine.                                         |
-| latest       | Ubuntu 20.04: winehq STABLE packages. This **WILL** break.  |
-| experimental | Ubuntu 20.04: winehq STAGING packages. This **WILL** break. |
+| Tag          | Description                        |
+|--------------|------------------------------------|
+| stable       | Ubuntu 20.04:                      |
+| latest       | Ubuntu 20.04: This **WILL** break. |
+| experimental | Ubuntu 20.04: This **WILL** break. |
 * Containers are automatically rebuilt weekly on Tuesday.
 
 ## Parameters
