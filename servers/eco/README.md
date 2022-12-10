@@ -9,9 +9,9 @@ Dedicated Eco server using Docker.
 
 | Tag          | Description                        |
 |--------------|------------------------------------|
-| stable       | Ubuntu 20.04:                      |
-| latest       | Ubuntu 20.04: This **WILL** break. |
-| experimental | Ubuntu 20.04: This **WILL** break. |
+| latest       | Current Steam release of Eco       |
+| release      | Current Steam release of Eco       |
+| staging      | Current Steam staging build of Eco |
 * Containers are automatically rebuilt weekly on Tuesday.
 
 ## Parameters
