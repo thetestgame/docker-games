@@ -1,0 +1,19 @@
+# Pull our base SteamCMD image
+FROM thetestgame/steam:experimental
+
+# Set our required environment variables
+ENV PUID=50530
+ENV PGID=50530
+ENV UPDATE_SERVER=1
+ENV PLATFORM=windows
+ENV STEAM_APP_ID=361580
+
+# Expose our ports
+EXPOSE 27015
+EXPOSE 27015
+EXPOSE 27016
+EXPOSE 7777
+EXPOSE 7778
+
+# Copy our startup script into the container
+COPY custom_server /data/custom_server
