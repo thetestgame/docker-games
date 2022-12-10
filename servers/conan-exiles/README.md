@@ -1,6 +1,6 @@
 # Conan Exiles
 
-> This is **NOT** an official Valve steam docker container.
+> This is **NOT** an official Funcom docker container.
 
 Generic Conan Exiles dedicated server using Docker.
 
