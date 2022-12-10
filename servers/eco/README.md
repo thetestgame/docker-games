@@ -34,9 +34,9 @@ Dedicated Eco server using Docker.
 
 | Port  | Protocol | Required? | Description                 |
 |-------|----------|-----------|-----------------------------|
-|`3000`| UDP      | Mandatory | Gameplay traffic.            |
-|`3001`| TCP      | Optional  | SRCDS RCON port.             |
-|`3002`| UDP      | Optional  | Steam announce traffic.      |
+|`3000` | UDP      | Mandatory | Gameplay traffic.           |
+|`3001` | TCP      | Optional  | Web server traffic.         |
+|`3002` | UDP      | Optional  | RCON traffic.               |
 
 ## Volumes
 
