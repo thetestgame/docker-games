@@ -4,8 +4,8 @@ on:
   push:
     branches: 
       - main
-    paths: 
-      - conan-exiles/*
+    #paths: 
+    #  - conan-exiles/*
 
   # Run every Tuesday at 1PM UTC (9AM EST)
   schedule:
