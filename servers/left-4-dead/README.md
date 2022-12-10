@@ -2,7 +2,7 @@
 
 > This is **NOT** an official Valve docker container.
 
-Dedicated Linux server example running Left 4 Dead using Docker.
+Dedicated Left 4 Dead server using Docker.
 
 ## Version Tags
 
