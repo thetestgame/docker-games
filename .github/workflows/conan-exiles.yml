@@ -36,7 +36,7 @@ jobs:
       - name: Build Docker Image
         run: |
           cd conan-exiles
-          docker build . -tag thetestgame/conan-exiles
+          docker build . --tag thetestgame/conan-exiles
 
       # Authenticate with DockerHub prior to publishing
       - name: Login to DockerHub
