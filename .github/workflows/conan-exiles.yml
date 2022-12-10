@@ -24,6 +24,7 @@ jobs:
         image-name: conan-exiles
         image-tag: latest
         build-context: ./conan-exiles 
+        dockerfile: ./conan-exiles/Dockerfile
 
   # Update our DockerHub README
   docker-hub-description:
