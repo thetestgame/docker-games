@@ -1,5 +1,5 @@
 # Pull our base SteamCMD image
-FROM thetestgame/steam:latest
+FROM thetestgame/steam:stable
 
 # Set our required environment variables
 ENV PUID=50540
@@ -7,6 +7,7 @@ ENV PGID=50540
 ENV UPDATE_SERVER=1
 ENV PLATFORM=linux
 ENV STEAM_APP_ID=739590
+ENV STEAM_APP_EXTRAS='-beta staging'
 
 # Expose our ports
 EXPOSE 3000

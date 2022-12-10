@@ -18,14 +18,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2.5.0
 
-    - name: Build and publish Docker image to Github Actions (Experimental)
+    - name: Build and publish Docker image to Github Actions (Staging)
       uses: VaultVulp/gp-docker-action@1.5.0
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }} 
         image-name: eco
-        image-tag: experimental
+        image-tag: staging
         build-context: ./servers/eco 
-        dockerfile: ./servers/eco/Dockerfile.Experimental
+        dockerfile: ./servers/eco/Dockerfile.Staging
 
     - name: Build and publish Docker image to Github Actions (Latest)
       uses: VaultVulp/gp-docker-action@1.5.0
@@ -34,16 +34,16 @@ jobs:
         image-name: eco
         image-tag: latest
         build-context: ./servers/eco 
-        dockerfile: ./servers/eco/Dockerfile.Latest
+        dockerfile: ./servers/eco/Dockerfile.Release
 
-    - name: Build and publish Docker image to Github Actions (Stable)
+    - name: Build and publish Docker image to Github Actions (Release)
       uses: VaultVulp/gp-docker-action@1.5.0
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }} 
         image-name: eco
-        image-tag: stable
+        image-tag: release
         build-context: ./servers/eco 
-        dockerfile: ./servers/eco/Dockerfile.Stable
+        dockerfile: ./servers/eco/Dockerfile.Release
 
   # Deploy a new image to DockerHub
   build-and-publish-dockerhub:
@@ -55,9 +55,9 @@ jobs:
       - name: Build Docker Image
         run: |
           cd servers/eco
-          docker build . --tag thetestgame/eco:experimental --file Dockerfile.Experimental
-          docker build . --tag thetestgame/eco:latest --file Dockerfile.Latest
-          docker build . --tag thetestgame/eco:stable --file Dockerfile.Stable
+          docker build . --tag thetestgame/eco:staging --file Dockerfile.Staging
+          docker build . --tag thetestgame/eco:latest --file Dockerfile.Release
+          docker build . --tag thetestgame/eco:release --file Dockerfile.Release
 
       # Authenticate with DockerHub prior to publishing
       - name: Login to DockerHub
@@ -69,9 +69,9 @@ jobs:
         # Publish our built container image
       - name: Push Docker Image
         run: |
-          docker push thetestgame/eco:experimental
+          docker push thetestgame/eco:staging
           docker push thetestgame/eco:latest
-          docker push thetestgame/eco:stable
+          docker push thetestgame/eco:release
 
   # Update our DockerHub README
   docker-hub-description:
