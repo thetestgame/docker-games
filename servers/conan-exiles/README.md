@@ -19,7 +19,6 @@ Generic Conan Exiles dedicated server using Docker.
 |------------------|------------------------------------------------------------------------------------------|----------------|
 | SERVER_DIR       | Location for server files.                                                               | `/data/server` |
 | STEAM            | Location of steamcmd client.                                                             | `/steam`       |
-| PLATFORM         | Platform to force specify when auto updating. `linux` or `windows`.                      | `windows`      |
 | STEAM_APP_EXTRAS | Optional. Additional options and values for steam app update, e.g setting BETA versions. | ``             |
 | UPDATE_OS        | Update core OS on startup. `1` enable, `0` disable.                                      | `1`            |
 | UPDATE_STEAM     | Update steamcmd on startup. `1` enable, `0` disable.                                     | `1`            |
