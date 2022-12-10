@@ -2,6 +2,8 @@
 FROM thetestgame/steam:stable
 
 # Set our required environment variables
+ENV PUID=50500
+ENV PGID=50500
 ENV UPDATE_SERVER=1
 ENV PLATFORM=windows
 ENV STEAM_APP_ID=443030

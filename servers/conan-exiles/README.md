@@ -23,8 +23,8 @@ Generic Conan Exiles dedicated server using Docker.
 | UPDATE_OS        | Update core OS on startup. `1` enable, `0` disable.                                      | `1`            |
 | UPDATE_STEAM     | Update steamcmd on startup. `1` enable, `0` disable.                                     | `1`            |
 | UPDATE_SERVER    | Update dedicated server specified by `STEAM_APP_ID` on startup. `1` enable, `0` disable. | `1`            |
-| PUID             | User ID to run steamcmd under as well as mount permissions.                              | `1000`         |
-| PGID             | Group ID to run steamcmd under as well as mount permissions.                             | `1000`         |
+| PUID             | User ID to run steamcmd under as well as mount permissions.                              | `50500`        |
+| PGID             | Group ID to run steamcmd under as well as mount permissions.                             | `50500`        |
 | LANG             | Language environment to use in containers.                                               | `en_US.UTF-8`  |
 | LANGUAGE         | Language environment to use in containers.                                               | `en_US:UTF-8`  |
 | LC_ALL           | Language environment to use in containers.                                               | `en_US.UTF-8`  |
