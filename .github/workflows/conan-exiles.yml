@@ -5,7 +5,7 @@ on:
     branches: 
       - main
     paths: 
-      - conan-exiles/*
+      - servers/conan-exiles/*
 
   # Run every Tuesday at 1PM UTC (9AM EST)
   schedule:
@@ -17,14 +17,33 @@ jobs:
     runs-on: ubuntu-latest      
     steps:
     - uses: actions/checkout@v2.5.0
-    - name: Build and publish Docker image to Github Actions
+
+    - name: Build and publish Docker image to Github Actions (Experimental)
+      uses: VaultVulp/gp-docker-action@1.5.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }} 
+        image-name: conan-exiles
+        image-tag: experimental
+        build-context: ./servers/conan-exiles 
+        dockerfile: ./servers/conan-exiles/Dockerfile.Experimental
+
+    - name: Build and publish Docker image to Github Actions (Latest)
       uses: VaultVulp/gp-docker-action@1.5.0
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }} 
         image-name: conan-exiles
         image-tag: latest
-        build-context: ./conan-exiles 
-        dockerfile: ./conan-exiles/Dockerfile
+        build-context: ./servers/conan-exiles 
+        dockerfile: ./servers/conan-exiles/Dockerfile.Latest
+
+    - name: Build and publish Docker image to Github Actions (Stable)
+      uses: VaultVulp/gp-docker-action@1.5.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }} 
+        image-name: conan-exiles
+        image-tag: stable
+        build-context: ./servers/conan-exiles 
+        dockerfile: ./servers/conan-exiles/Dockerfile.Stable
 
   # Deploy a new image to DockerHub
   build-and-publish-dockerhub:
@@ -35,8 +54,10 @@ jobs:
       # Build Docker Image
       - name: Build Docker Image
         run: |
-          cd conan-exiles
-          docker build . --tag thetestgame/conan-exiles
+          cd servers/conan-exiles
+          docker build . --tag thetestgame/conan-exiles:experimental --file Dockerfile.Experimental
+          docker build . --tag thetestgame/conan-exiles:latest --file Dockerfile.Latest
+          docker build . --tag thetestgame/conan-exiles:stable --file Dockerfile.Stable
 
       # Authenticate with DockerHub prior to publishing
       - name: Login to DockerHub
@@ -47,7 +68,10 @@ jobs:
 
         # Publish our built container image
       - name: Push Docker Image
-        run: docker push thetestgame/conan-exiles
+        run: |
+          docker push thetestgame/conan-exiles:experimental
+          docker push thetestgame/conan-exiles:latest
+          docker push thetestgame/conan-exiles:stable
 
   # Update our DockerHub README
   docker-hub-description:
@@ -61,4 +85,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           repository: thetestgame/conan-exiles
-          readme-filepath: ./conan-exiles/README.md
+          readme-filepath: ./servers/conan-exiles/README.md
