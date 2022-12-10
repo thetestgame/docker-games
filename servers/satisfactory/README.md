@@ -1,3 +1,5 @@
+<img src="https://static.wikia.nocookie.net/satisfactory_gamepedia_en/images/8/8a/Satisfactory_logo.png/revision/latest?cb=20180612021947">
+
 # Satisfactory
 
 > This is **NOT** an official Satisfactory docker container.
