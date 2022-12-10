@@ -34,7 +34,7 @@ Dedicated Satisfactory server using Docker.
 | Port  | Protocol | Required? | Description                  |
 |-------|----------|-----------|------------------------------|
 |`15777`| UDP      | Mandatory | Query Port. This is the port that you need to enter in the game when you first connect to a dedicated server. This port can be redirected freely. |
-|`15000`| TCP      | Optional  | Beacon Port. This port is automatically incremented if multiple instances of the server are launched and the default is in use already. As of Update 6, this port can be redirected freely. |
+|`15000`| UDP      | Optional  | Beacon Port. This port is automatically incremented if multiple instances of the server are launched and the default is in use already. As of Update 6, this port can be redirected freely. |
 |`7777` | UDP      | Optional  | Game Port. This port can be redirected freely using the -Port paramater upon server startup, e. g. "-Port=10000" to change the game port to UDP port 10000. At present, if the default port is in use, the next higher one will be checked until a free port is found, and it will be used. |
 
 ## Volumes
