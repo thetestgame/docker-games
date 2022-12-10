@@ -12,8 +12,7 @@ ENV STEAM_APP_ID=361580
 EXPOSE 27015
 EXPOSE 27015
 EXPOSE 27016
-EXPOSE 7777
-EXPOSE 7778
+EXPOSE 33540
 
 # Copy our startup script into the container
 COPY custom_server /data/custom_server
