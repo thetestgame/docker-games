@@ -10,11 +10,9 @@ ENV STEAM_APP_ID=1690800
 ENV STEAM_APP_EXTRAS='-beta public'
 
 # Expose our ports
-EXPOSE 27015
-EXPOSE 27015
-EXPOSE 27016
+EXPOSE 15777
+EXPOSE 15000
 EXPOSE 7777
-EXPOSE 7778
 
 # Copy our startup script into the container
 COPY custom_server /data/custom_server
