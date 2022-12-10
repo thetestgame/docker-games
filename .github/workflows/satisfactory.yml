@@ -1,0 +1,88 @@
+name: Build and Publish (Satisfactory)
+on:
+  # Run on every main branch push to the satisfactory folder
+  push:
+    branches: 
+      - main
+    paths: 
+      - servers/satisfactory/*
+
+  # Run every Tuesday at 1PM UTC (9AM EST)
+  schedule:
+    - cron: "0 13 * * 2"
+
+jobs:
+  # Deploy a new image to Github Packages
+  build-and-publish-github-actions:
+    runs-on: ubuntu-latest      
+    steps:
+    - uses: actions/checkout@v2.5.0
+
+    - name: Build and publish Docker image to Github Actions (Experimental)
+      uses: VaultVulp/gp-docker-action@1.5.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }} 
+        image-name: satisfactory
+        image-tag: experimental
+        build-context: ./servers/satisfactory 
+        dockerfile: ./servers/satisfactory/Dockerfile.Experimental
+
+    - name: Build and publish Docker image to Github Actions (Latest)
+      uses: VaultVulp/gp-docker-action@1.5.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }} 
+        image-name: satisfactory
+        image-tag: latest
+        build-context: ./servers/satisfactory 
+        dockerfile: ./servers/satisfactory/Dockerfile.Latest
+
+    - name: Build and publish Docker image to Github Actions (Stable)
+      uses: VaultVulp/gp-docker-action@1.5.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }} 
+        image-name: satisfactory
+        image-tag: stable
+        build-context: ./servers/satisfactory 
+        dockerfile: ./servers/satisfactory/Dockerfile.Stable
+
+  # Deploy a new image to DockerHub
+  build-and-publish-dockerhub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.5.0
+
+      # Build Docker Image
+      - name: Build Docker Image
+        run: |
+          cd servers/satisfactory
+          docker build . --tag thetestgame/satisfactory:experimental --file Dockerfile.Experimental
+          docker build . --tag thetestgame/satisfactory:latest --file Dockerfile.Latest
+          docker build . --tag thetestgame/satisfactory:stable --file Dockerfile.Stable
+
+      # Authenticate with DockerHub prior to publishing
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+        # Publish our built container image
+      - name: Push Docker Image
+        run: |
+          docker push thetestgame/satisfactory:experimental
+          docker push thetestgame/satisfactory:latest
+          docker push thetestgame/satisfactory:stable
+
+  # Update our DockerHub README
+  docker-hub-description:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: thetestgame/satisfactory
+          readme-filepath: ./servers/satisfactory/README.md

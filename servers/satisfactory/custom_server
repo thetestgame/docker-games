@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# Runs as root. Drop privileges.
+#
+
+su - steam -c "/data/server/FactoryServer.sh"
