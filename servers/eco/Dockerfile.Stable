@@ -1,0 +1,18 @@
+# Pull our base SteamCMD image
+FROM thetestgame/steam:stable
+
+# Set our required environment variables
+ENV PUID=50540
+ENV PGID=50540
+ENV UPDATE_SERVER=1
+ENV PLATFORM=linux
+ENV STEAM_APP_ID=739590
+
+# Expose our ports
+EXPOSE 3000
+EXPOSE 3001
+EXPOSE 3002
+EXPOSE 3003
+
+# Copy our startup script into the container
+COPY custom_server /data/custom_server

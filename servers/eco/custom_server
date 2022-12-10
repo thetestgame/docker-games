@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# Runs as root. Drop privileges.
+#
+
+su - steam 
+cd ${SERVER_DIR}
+./EcoServer
