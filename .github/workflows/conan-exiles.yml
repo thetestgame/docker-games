@@ -1,0 +1,40 @@
+name: Build and Publish (Conan Exiles)
+on:
+  # Run on every main branch push to the conan-exiles folder
+  push:
+    branches: 
+      - main
+    paths: 
+      - conan-exiles/*
+
+  # Run every Tuesday at 1PM UTC (9AM EST)
+  schedule:
+    - cron: "0 13 * * 2"
+
+jobs:
+  # Deploy a new image to Github Packages
+  build-and-publish-github-actions:
+    runs-on: ubuntu-latest      
+    steps:
+    - uses: actions/checkout@v2.5.0
+    - name: Build and publish Docker image to Github Actions
+      uses: VaultVulp/gp-docker-action@1.5.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }} 
+        image-name: conan-exiles
+        image-tag: latest
+        build-context: ./conan-exiles 
+
+  # Update our DockerHub README
+  docker-hub-description:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: thetestgame/conan-exiles
+          readme-filepath: ./conan-exiles/README.md
