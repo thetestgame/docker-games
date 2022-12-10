@@ -1,4 +1,4 @@
-# [![conan-exiles][f8]®](https://store.steampowered.com/agecheck/app/440900/) Conan Exiles
+# Conan Exiles
 
 > This is **NOT** an official Valve steam docker container.
 
@@ -50,5 +50,3 @@ for a detailed list of steam ports.
 | Volume  | Function                           |
 |---------|------------------------------------|
 | /data   | User data location for the server. |
-
-[f8]: https://raw.githubusercontent.com/thetestgame/docker-games/main/media/conan-exiles.png
